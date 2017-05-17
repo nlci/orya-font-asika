@@ -1,0 +1,6 @@
+The script Oriya was not supported by Microsoft Windows until Vista
+which shipped with a Uniscribe version such as 1.626.6001.18000
+which came with Service Pack 1. As an example...
+\u0b1c \u0b4d \u0b1e => \u0b1c\u0b4d\u0b1e
+\u0b18 \u0b4d \u0b15 => \u0b18\u0b4d\u0b15
+\u0b15 \u0b4b => \u0b15\u0b4b
