@@ -39,7 +39,7 @@ def modifySource(sfd, f, s, sn):
 
     emsize = '1000'
     emext = '.sfd'
-    emopt = '-s ' + str(1000.0/2048.0) + ' '
+    emopt = '-s ' + str(1000.0/2048.0/1.4) + ' '
     devaf = 'Maurya'
 
     cmd = '-i ' + vaigai + '-' + sn + '.sfd' + ' --rangefile cs/thiruvalluvar/main.txt'
@@ -51,11 +51,11 @@ def modifySource(sfd, f, s, sn):
     asn = sn
     asn = asn.replace('BoldItalic', 'Bold')
     asn = asn.replace('Italic', 'Regular')
-    cmd = '-i ' + annapurna_dir + emsize + annapurna_ttf + asn + emext + ' --rangefile cs/annapurna/main.txt'
+    cmd = '-s ' + str(1/1.4) + ' ' + '-i ' + annapurna_dir + emsize + annapurna_ttf + asn + emext + ' --rangefile cs/annapurna/main.txt'
     modifyFile(cmd, sfd)
 
     sns = s.replace('-', '')
-    cmd = '-i ' + sophia_dir + '1000' + sophia_ttf + sns + '.ttf' + ' --rangefile cs/sophia/main.txt'
+    cmd = '-s ' + str(1/1.4) + ' ' + '-i ' + sophia_dir + '1000' + sophia_ttf + sns + '.ttf' + ' --rangefile cs/sophia/main.txt'
     modifyFile(cmd, sfd)
     cmd = emopt + '-i ' + charis_dir + '2048' + charis_ttf + s + '.ttf' + ' --rangefile cs/charis/composite4sophia.txt --rangefile cs/charis/extra4sophia.txt'
     modifyFile(cmd, sfd)

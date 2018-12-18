@@ -26,7 +26,7 @@ APPNAME='nlci-' + script
 DESC_SHORT='Oriya Unicode font with OT support'
 DESC_NAME='NLCI-' + script
 DEBPKG='fonts-nlci-' + script
-#getufoinfo('source/Asika-Regular.ufo')
+getufoinfo('source/Asika-Regular.ufo')
 
 # set test parameters
 TESTSTRING=u'\u0b15'
