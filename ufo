@@ -1,0 +1,13 @@
+#!/bin/bash
+
+faces=(Asika)
+styles=(Regular Bold Italic)
+desc_long="Pan Oriya font designed to support all the languages using the Oriya script."
+
+export nlci=$HOME/script/tools
+source ${nlci}/prepare.bash
+
+source ${nlci}/addchars.bash
+
+source ${nlci}/metadata.bash
+echo "done producing UFO sources"

@@ -14,6 +14,11 @@ ChangeLog
 ---------
 (This should list both major and minor changes, most recent first.)
 
+Unreleased
+- Add many Latin and Devanagari characters
+- Latin glyphs are from Sophia Nubian (https://scripts.sil.org/SophiaNubian/)
+- Additional Latin glyphs are from Charis SIL (https://software.sil.org/charis/)
+- Indian Rupee Sign is from Annapurna SIL (https://software.sil.org/annapurna/)
 10 Aug 2015 (Dev NLCI) NLCI Oriya fonts version 0.100
 - Latin glyphs are from SILSophia (http://scripts.sil.org/silencorefonts)
 
@@ -27,3 +32,6 @@ N: Dev NLCI
 E: dev@nlife.in
 W: http://www.nlci.in/fonts/
 D: NLCI designers and font engineers
+
+N: Bobby de Vos
+D: Font engineer

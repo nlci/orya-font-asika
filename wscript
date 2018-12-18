@@ -1,55 +1,105 @@
+#!/usr/bin/python
+# this is a smith configuration file
+
 # asika
 
-# set folder names
+# command line options
+opts = preprocess_args(
+    {'opt' : '-l'}, # build fonts from legacy for inclusion into final fonts
+    {'opt' : '-p'}, # do not run psfix on the final fonts
+    {'opt' : '-s'}  # only build a single font
+    )
+
+import os2
+
+# set the default output folders
 out='results'
-TESTDIR='tests'
+
+# locations of files needed for some tasks
+DOCDIR = ['documentation', 'web']
 STANDARDS='tests/reference'
 
 # set meta-information
 script='orya'
 APPNAME='nlci-' + script
-VERSION='0.100'
-TTF_VERSION='0.100'
-COPYRIGHT='Copyright (c) 2009-2015, NLCI (http://www.nlci.in/fonts/)'
 
 DESC_SHORT='Oriya Unicode font with OT support'
-DESC_LONG='''
-Pan Oriya font designed to support all the languages using the Oriya script.
-'''
 DESC_NAME='NLCI-' + script
 DEBPKG='fonts-nlci-' + script
+#getufoinfo('source/Asika-Regular.ufo')
 
 # set test parameters
 TESTSTRING=u'\u0b15'
 
 # set fonts to build
 faces = ('Asika',)
+facesLegacy = ('ASIK',)
 styles = ('-R', '-B', '-I')
 stylesName = ('Regular', 'Bold', 'Italic')
+stylesLegacy = ('', 'BD', 'I')
+
+if '-s' in opts:
+    faces = (faces[0],)
+    facesLegacy = (facesLegacy[0],)
+    styles = (styles[0],)
+    stylesName = (stylesName[0],)
+    stylesLegacy = (stylesLegacy[0],)
 
 # set build parameters
 fontbase = 'source/'
+archive = fontbase + 'archive/unhinted/'
+generated = 'generated/'
 tag = script.upper()
 
+panose = [2, 0, 0, 3]
+codePageRange = [0, 29]
+unicodeRange = [0, 1, 2, 3, 4, 5, 6, 7, 15, 19, 29, 31, 32, 33, 35, 38, 39, 40, 45, 57, 60, 62, 67, 69, 91]
+hackos2 = os2.hackos2(panose, codePageRange, unicodeRange)
+
+if '-l' in opts:
+    for f, fLegacy in zip(faces, facesLegacy):
+        for (s, sn, sLegacy) in zip(styles, stylesName, stylesLegacy):
+            font(target = process('ufo/' + f + '-' + sn.replace(' ', '') + '.ttf',
+                    cmd(hackos2 + ' ${DEP} ${TGT}'),
+                    name(f, lang='en-US', subfamily=(sn))
+                    ),
+                source = legacy(f + s + '.ttf',
+                                source = archive + fLegacy + sLegacy + '.ttf',
+                                xml = fontbase + 'asika_unicode.xml',
+                                params = '',
+                                noap = '')
+                )
+
+if '-l' in opts:
+    faces = list()
 for f in faces:
-    for (s, sn) in zip(styles, stylesName):
-        font(target = process(tag + f + '-' + sn.replace(' ', '') + '.ttf',
+    p = package(
+        appname = APPNAME + '-' + f.lower(),
+        version = VERSION,
+        docdir = DOCDIR # 'documentation'
+    )
+    for sn in stylesName:
+        snf = '-' + sn.replace(' ', '')
+        fontfilename = tag + f + snf
+        font(target = process(fontfilename + '.ttf',
+                #cmd(psfix + ' ${DEP} ${TGT}'),
                 name(tag + ' ' + f, lang='en-US', subfamily=(sn))
                 ),
-            source = fontbase + f + s + '.sfd',
-            sfd_master = fontbase + 'master.sfd',
-            opentype = internal(),
-            #graphite = gdl(fontbase + f + s + '.gdl',
+            source = fontbase + f + snf + '.ufo',
+            # opentype = fea(f + snf + '.fea',
+            #     master = fontbase + 'master.fea',
+            #     make_params = ''
+            #     ),
+            #graphite = gdl(generated + f + snf + '.gdl',
             #    master = fontbase + 'master.gdl',
-            #    make_params = '-p 1 -s 2 -l first',
-            #    params = '-d -v2'
+            #    make_params = '-p 1 -s 2',
+            #    params = '-e ' + f + snf + '_gdlerr.txt'
             #    ),
             #classes = fontbase + 'asika_classes.xml',
-            ap = f + s + '.xml',
-            version = TTF_VERSION,
-            copyright = COPYRIGHT,
-            license = ofl('Asika', 'NLCI'),
-            woff = woff(),
-            script = 'orya',
-            fret = fret(params = '-r')
+            #ap = generated + f + snf + '.xml',
+            version = VERSION,
+            #woff = woff('woff/' + fontfilename + '.woff', params = '-v ' + VERSION + ' -m ../' + fontbase + f + '-WOFF-metadata.xml'),
+            #script = 'orya',
+            package = p,
+            fret = fret(params = '')
         )
