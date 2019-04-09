@@ -16,7 +16,7 @@ ChangeLog
 
 Unreleased
 - Add many Latin and Devanagari characters
-- Latin glyphs are from Sophia Nubian (https://scripts.sil.org/SophiaNubian/) scaled 71%
+- Latin glyphs are from Source Sans Pro (https://fonts.adobe.com/fonts/source-sans/) scaled 71%
 - Additional Latin glyphs are from Charis SIL (https://software.sil.org/charis/) scaled 71%
 - Indian Rupee Sign is from Annapurna SIL (https://software.sil.org/annapurna/) scaled 71%
 10 Aug 2015 (Dev NLCI) NLCI Oriya fonts version 0.100
