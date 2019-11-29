@@ -5,7 +5,19 @@ styles=(Regular Bold Italic)
 desc_long="Pan Oriya font designed to support all the languages using the Oriya script."
 
 export nlci=$HOME/script/tools
+export src=source
+
+pushd ${src}/archive
+for ttf in ../../../../mappings/winscript/fonts/*.ttf
+do
+    echo "applying legacy OFL to file from $ttf"
+    $HOME/script/zind/bin/legacy-ofl $ttf $(basename $ttf) 1996
+done
+popd
+
 source ${nlci}/prepare.bash
 
 source ${nlci}/metadata.bash
+
+rm -f ${src}/*-???*.sfd*
 echo "done producing UFO sources"

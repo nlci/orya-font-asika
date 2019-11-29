@@ -33,10 +33,10 @@ TESTSTRING=u'\u0b15'
 
 # set fonts to build
 faces = ('Asika',)
-facesLegacy = ('ASIK',)
+facesLegacy = ('asik',)
 styles = ('-R', '-B', '-I')
 stylesName = ('Regular', 'Bold', 'Italic')
-stylesLegacy = ('', 'BD', 'I')
+stylesLegacy = ('', 'bd', 'i')
 
 if '-s' in opts:
     faces = (faces[0],)
@@ -59,6 +59,7 @@ hackos2 = os2.hackos2(panose, codePageRange, unicodeRange)
 if '-l' in opts:
     for f, fLegacy in zip(faces, facesLegacy):
         for (s, sn, sLegacy) in zip(styles, stylesName, stylesLegacy):
+            added = '../' + archive + fLegacy.upper() + sLegacy.upper() + '.ttf'
             font(target = process('ufo/' + f + '-' + sn.replace(' ', '') + '.ttf',
                     cmd(hackos2 + ' ${DEP} ${TGT}'),
                     name(f, lang='en-US', subfamily=(sn))
@@ -66,7 +67,7 @@ if '-l' in opts:
                 source = legacy(f + s + '.ttf',
                                 source = archive + fLegacy + sLegacy + '.ttf',
                                 xml = fontbase + 'asika_unicode.xml',
-                                params = '',
+                                params = ' -f ' + added,
                                 noap = '')
                 )
 
