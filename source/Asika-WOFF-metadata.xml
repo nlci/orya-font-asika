@@ -9,26 +9,14 @@
       role="NLCI designers and font engineers"
     />
   </credits>
-  <description>
+  <description url="http://www.nlci.in/fonts/">
     <text lang="en">
       Pan Oriya font designed to support all the languages using the Oriya script.
-      
-      ChangeLog
-      ---------
-      (This should list both major and minor changes, most recent first.)
-      
-      Unreleased
-      - Add many Latin and Devanagari characters
-      - Latin glyphs are from Source Sans Pro (https://fonts.adobe.com/fonts/source-sans/) scaled 71%
-      - Additional Latin glyphs are from Charis SIL (https://software.sil.org/charis/) scaled 71%
-      - Indian Rupee Sign is from Annapurna SIL (https://software.sil.org/annapurna/) scaled 71%
-      10 Aug 2015 (Dev NLCI) NLCI Oriya fonts version 0.100
-      - Latin glyphs are from SILSophia (http://scripts.sil.org/silencorefonts)
     </text>
   </description>
   <license url="http://scripts.sil.org/OFL" id="org.sil.ofl.1.1">
     <text lang="en">
-      This Font Software is Copyright (c) 2009-2021, NLCI (http://www.nlci.in/fonts/)
+      This Font Software is Copyright (c) 2009-2022, NLCI (http://www.nlci.in/fonts/)
       with Reserved Font Names "Asika" and "NLCI".
       Latin glyphs Copyright (c) 2010-2018, Adobe (http://www.adobe.com/)
       with Reserved Font Name "Source".
@@ -132,7 +120,7 @@
   </license>
   <copyright>
     <text lang="en">
-      This Font Software is Copyright (c) 2009-2021, NLCI (http://www.nlci.in/fonts/)
+      This Font Software is Copyright (c) 2009-2022, NLCI (http://www.nlci.in/fonts/)
       with Reserved Font Names "Asika" and "NLCI".
       Latin glyphs Copyright (c) 2010-2018, Adobe (http://www.adobe.com/)
       with Reserved Font Name "Source".
